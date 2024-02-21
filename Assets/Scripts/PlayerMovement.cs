@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //variation of official Unity documentation of CharacterController
         Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-
         //applying of gravity to the verticalVelocity        
         if (controller.isGrounded == false)
         {
