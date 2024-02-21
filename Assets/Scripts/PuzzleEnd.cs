@@ -5,16 +5,18 @@ using UnityEngine;
 public class PuzzleEnd : MonoBehaviour
 {
     [SerializeField] private GameObject riddleEntraceTeleporter;
-    private GameObject continueAfterRiddleTeleporter;
 
-    private GameObject player;
-    private CharacterController characterController;
+    [SerializeField] GameObject[] goToEndTeleporters;
+
+    //private GameObject player;
+    //private CharacterController characterController;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        characterController = player.GetComponent<CharacterController>();
-        continueAfterRiddleTeleporter = GameObject.Find("End_of_Game_Exit");
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //characterController = player.GetComponent<CharacterController>();
+        //Debug.Log("PuzzleEnd.cs\nName: " + transform.name + "\nPosition: " + transform.position);
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -25,12 +27,16 @@ public class PuzzleEnd : MonoBehaviour
 
             PuzzleEnd[] totalRiddleExits;
             totalRiddleExits = FindObjectsOfType<PuzzleEnd>(false);
-            Debug.Log(totalRiddleExits.Length+" to go!");
+            Debug.Log(totalRiddleExits.Length + " to go!");
             if (totalRiddleExits.Length <= 0)
             {
-                characterController.enabled = false;
-                player.transform.SetPositionAndRotation(continueAfterRiddleTeleporter.transform.position, continueAfterRiddleTeleporter.transform.rotation);
-                characterController.enabled = true;
+                foreach (var goToEndTeleporter in goToEndTeleporters)
+                {
+                    goToEndTeleporter.SetActive(true);
+                }
+                //characterController.enabled = false;
+                //player.transform.SetPositionAndRotation(continueAfterRiddleTeleporter.transform.position, Quaternion.Euler(continueAfterRiddleTeleporter.transform.rotation.eulerAngles + new Vector3(0,90,0)));
+                //characterController.enabled = true;
             }
         }
     }
