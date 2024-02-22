@@ -28,8 +28,8 @@ public class MouseLook : MonoBehaviour
     void Update()
     {
         //holt sich den Maus Input aus Unity, multipliziert es mit der eingestellten empfindlichkeit und deltaTime damit es unabhängig von der Framerate ist
-        mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+        mouseX = Input.GetAxis("Mouse X") * sensitivity;
+        mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
         //begrenzt camTilt auf einen 180° bereich damit man maximal gerade nach oben und unten schauen kann
         camTilt -= mouseY;

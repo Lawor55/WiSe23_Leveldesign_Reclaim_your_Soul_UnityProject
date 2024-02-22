@@ -6,7 +6,7 @@ public class PuzzleEnd : MonoBehaviour
 {
     [SerializeField] private GameObject riddleEntraceTeleporter;
 
-    [SerializeField] GameObject[] goToEndTeleporters;
+    [SerializeField] private GameObject[] goToEndTeleporters;
 
     //private GameObject player;
     //private CharacterController characterController;
@@ -16,7 +16,6 @@ public class PuzzleEnd : MonoBehaviour
         //player = GameObject.FindGameObjectWithTag("Player");
         //characterController = player.GetComponent<CharacterController>();
         //Debug.Log("PuzzleEnd.cs\nName: " + transform.name + "\nPosition: " + transform.position);
-
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -34,10 +33,10 @@ public class PuzzleEnd : MonoBehaviour
                 {
                     goToEndTeleporter.SetActive(true);
                 }
-                //characterController.enabled = false;
-                //player.transform.SetPositionAndRotation(continueAfterRiddleTeleporter.transform.position, Quaternion.Euler(continueAfterRiddleTeleporter.transform.rotation.eulerAngles + new Vector3(0,90,0)));
-                //characterController.enabled = true;
             }
+            //characterController.enabled = false;
+            //player.transform.SetPositionAndRotation(continueAfterRiddleTeleporter.transform.position, Quaternion.Euler(continueAfterRiddleTeleporter.transform.rotation.eulerAngles + new Vector3(0,90,0)));
+            //characterController.enabled = true;
         }
     }
 }

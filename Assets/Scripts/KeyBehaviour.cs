@@ -7,32 +7,35 @@ public class KeyBehaviour : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float minDistanceToGlow;
 
-    //private Material keyMaterial;
-    //private Color keyEmissiveColor;
-    //private GameObject player;
+    private new Light light;
+    private float lightIntensity;
+    private Transform player;
 
-    //private void Start()
-    //{
-    //    keyMaterial = gameObject.GetComponent<Renderer>().material;
-    //    keyEmissiveColor = gameObject.GetComponent<Renderer>().material.GetColor("_EmissionColor");
-    //    player = GameObject.FindGameObjectWithTag("Player");
-    //    //Debug.Log("Emissive" + transform.name + "Colour: " + keyMaterial.GetColor("_EmissionColor"));
-    //    Debug.Log("Intensity "+transform.name+": "+ keyEmissiveColor.a);
-    //}
+    private void Start()
+    {
+        light = GetComponent<Light>();
+        lightIntensity = light.intensity;
+        light.intensity = 0;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (player = null)
+        {
+            Debug.Log("No player found");
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0, rotationSpeed, 0));
-        //if (Vector3.Distance(transform.position, player.transform.position) >= minDistanceToGlow)
-        //{
-        //    return;
-        //}
-        //else
-        //{
-        //    Debug.Log("Distance converted to alpha: "+ (minDistanceToGlow - Vector3.Distance(transform.position, player.transform.position)) / minDistanceToGlow);
-        //    keyEmissiveColor.a =  (minDistanceToGlow - Vector3.Distance(transform.position, player.transform.position))/minDistanceToGlow;
-        //    keyMaterial.SetColor("_EmissionColor", keyEmissiveColor);
-        //}
+        transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));
+
+        if (Vector3.Distance(transform.position, player.transform.position) >= minDistanceToGlow)
+        {
+            light.intensity = 0;
+        }
+        else
+        {
+            light.intensity = lightIntensity;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
