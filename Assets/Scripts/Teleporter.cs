@@ -5,10 +5,17 @@ using UnityEngine;
 public class Teleporter : MonoBehaviour
 {
     [SerializeField] private Transform teleportGoal;
+    [SerializeField] private GameObject endTeleportGoal;
     [SerializeField] private bool flipViewDirection;
+
+    [SerializeField] private GameObject riddleEntraceTeleporter;
+
+    [SerializeField] private GameObject[] endOfGameObjects;
+    [SerializeField] private bool isEndOfRiddleTeleporter = false;
+
     //[SerializeField] private bool ignoreModX;
     //[SerializeField] private bool ignoreModZ;
-    private TorchFlicker torchFlicker;
+    //private TorchFlicker torchFlicker;
 
     private GameObject player;
     private CharacterController characterController;
@@ -17,7 +24,7 @@ public class Teleporter : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         characterController = player.GetComponent<CharacterController>();
-        torchFlicker = player.GetComponentInChildren<TorchFlicker>();
+        //torchFlicker = player.GetComponentInChildren<TorchFlicker>();
         //Debug.Log("Teleporter.cs\nName: " + transform.name + "\nPosition: " + transform.position);
     }
 
@@ -25,8 +32,33 @@ public class Teleporter : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Teleport(teleportGoal, transform);
-            torchFlicker.Flicker();
+            if (isEndOfRiddleTeleporter)
+            {
+                riddleEntraceTeleporter.SetActive(false);
+                gameObject.SetActive(false);
+
+                GameObject[] totalRiddleExits;
+                totalRiddleExits = GameObject.FindGameObjectsWithTag("End of Game Teleporter");
+                Debug.Log(totalRiddleExits.Length + " Keys left!");
+                if (totalRiddleExits.Length <= 0)
+                {
+                    foreach (var endOfGameObject in endOfGameObjects)
+                    {
+                        endOfGameObject.SetActive(!endOfGameObject.activeInHierarchy);
+                        //Debug.Log("Active state of " + endOfGameObject.name + " is: " + endOfGameObject.activeInHierarchy);
+                    }
+                    Teleport(endTeleportGoal.transform, transform);
+                }
+                else
+                {
+                    Teleport(teleportGoal, transform);
+                }
+            }
+            else
+            {
+                Teleport(teleportGoal, transform);
+            }
+            //torchFlicker.Flicker();
         }
     }
 
@@ -69,6 +101,6 @@ public class Teleporter : MonoBehaviour
         characterController.enabled = false;
         player.transform.SetPositionAndRotation(goalPosition, goalRotation);
         characterController.enabled = true;
-        Debug.Log("Teleport\n" + "Relative Player Position: " + relativePlayerPosition + "\n" + "Relative Player Rotation: " + relativePlayerRotation);
+        //Debug.Log("Teleport\n" + "Relative Player Position: " + relativePlayerPosition + "\n" + "Relative Player Rotation: " + relativePlayerRotation);
     }
 }

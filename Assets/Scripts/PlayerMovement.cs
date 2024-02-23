@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     //movementspeed in meters per second
     [SerializeField] private float speed = 5f;
     //jump height in meters
-    [SerializeField] private float jumpHeight = 2f;
+    //[SerializeField] private float jumpHeight = 2f;
     private float groundTime;
 
     [Header("Physics Settings")]

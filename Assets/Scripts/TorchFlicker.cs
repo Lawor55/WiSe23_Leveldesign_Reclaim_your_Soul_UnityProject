@@ -15,7 +15,7 @@ public class TorchFlicker : MonoBehaviour
     [SerializeField] private float flickeringIntensityOffset;
 
     private Light playerLight;
-    private bool initiateFlicker = true;
+    //private bool initiateFlicker = true;
     private float noFlicker;
     private float flickerTimer;
     private float defaultIntensity;

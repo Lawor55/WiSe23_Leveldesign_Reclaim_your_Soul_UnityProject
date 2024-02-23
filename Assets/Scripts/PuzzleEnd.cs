@@ -32,7 +32,7 @@ public class PuzzleEnd : MonoBehaviour
                 foreach (var endOfGameObject in endOfGameObjects)
                 {
                     endOfGameObject.SetActive(!endOfGameObject.activeInHierarchy);
-                    Debug.Log("Active state of " + endOfGameObject.name + " is: " + endOfGameObject.activeInHierarchy);
+                    //Debug.Log("Active state of " + endOfGameObject.name + " is: " + endOfGameObject.activeInHierarchy);
                 }
             }
             //characterController.enabled = false;
