@@ -16,7 +16,7 @@ public class Teleporter : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         characterController = player.GetComponent<CharacterController>();
-        Debug.Log("Teleporter.cs\nName: " + transform.name + "\nPosition: " + transform.position);
+        //Debug.Log("Teleporter.cs\nName: " + transform.name + "\nPosition: " + transform.position);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,6 +66,6 @@ public class Teleporter : MonoBehaviour
         characterController.enabled = false;
         player.transform.SetPositionAndRotation(goalPosition, goalRotation);
         characterController.enabled = true;
-        //Debug.Log("Teleport\n" + "Relative Player Position: " + relativePlayerPosition + "\n" + "Relative Player Rotation: " + relativePlayerRotation);
+        Debug.Log("Teleport\n" + "Relative Player Position: " + relativePlayerPosition + "\n" + "Relative Player Rotation: " + relativePlayerRotation);
     }
 }

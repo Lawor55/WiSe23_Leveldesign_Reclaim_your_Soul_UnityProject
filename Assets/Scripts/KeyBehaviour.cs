@@ -7,17 +7,18 @@ public class KeyBehaviour : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float minDistanceToGlow;
 
-    private new Light light;
-    private float lightIntensity;
+    private Light[] lights;
     private Transform player;
 
     private void Start()
     {
-        light = GetComponent<Light>();
-        lightIntensity = light.intensity;
-        light.intensity = 0;
+        lights = GetComponentsInChildren<Light>();
+        foreach (var light in lights)
+        {
+            light.intensity = 0;
+        }
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        if (player = null)
+        if (player == null)
         {
             Debug.Log("No player found");
         }
@@ -28,13 +29,22 @@ public class KeyBehaviour : MonoBehaviour
     {
         transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));
 
-        if (Vector3.Distance(transform.position, player.transform.position) >= minDistanceToGlow)
+        if (Vector3.Distance(transform.position, player.position) >= minDistanceToGlow && lights[0].intensity != 0)
         {
-            light.intensity = 0;
+            foreach (var light in lights)
+            {
+                light.intensity = 0;
+            }
         }
-        else
+        else if(Vector3.Distance(transform.position, player.position) < minDistanceToGlow)
         {
-            light.intensity = lightIntensity;
+            float intensity = (minDistanceToGlow - Vector3.Distance(transform.position, player.transform.position)) / (minDistanceToGlow * 10);
+            //Debug.Log("Key Intensity: " + intensity);
+            foreach (var light in lights)
+            {
+                light.intensity = intensity;
+                //light.intensity = lightIntensity;
+            }
         }
     }
 

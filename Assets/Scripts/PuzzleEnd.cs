@@ -6,17 +6,17 @@ public class PuzzleEnd : MonoBehaviour
 {
     [SerializeField] private GameObject riddleEntraceTeleporter;
 
-    [SerializeField] private GameObject[] goToEndTeleporters;
+    [SerializeField] private GameObject[] endOfGameObjects;
 
     //private GameObject player;
     //private CharacterController characterController;
 
-    private void Start()
-    {
-        //player = GameObject.FindGameObjectWithTag("Player");
-        //characterController = player.GetComponent<CharacterController>();
-        //Debug.Log("PuzzleEnd.cs\nName: " + transform.name + "\nPosition: " + transform.position);
-    }
+    //private void Start()
+    //{
+    //    //player = GameObject.FindGameObjectWithTag("Player");
+    //    //characterController = player.GetComponent<CharacterController>();
+    //    //Debug.Log("PuzzleEnd.cs\nName: " + transform.name + "\nPosition: " + transform.position);
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Player"))
@@ -26,12 +26,13 @@ public class PuzzleEnd : MonoBehaviour
 
             PuzzleEnd[] totalRiddleExits;
             totalRiddleExits = FindObjectsOfType<PuzzleEnd>(false);
-            Debug.Log(totalRiddleExits.Length + " to go!");
+            Debug.Log(totalRiddleExits.Length + " Keys left!");
             if (totalRiddleExits.Length <= 0)
             {
-                foreach (var goToEndTeleporter in goToEndTeleporters)
+                foreach (var endOfGameObject in endOfGameObjects)
                 {
-                    goToEndTeleporter.SetActive(true);
+                    endOfGameObject.SetActive(!endOfGameObject.activeInHierarchy);
+                    Debug.Log("Active state of " + endOfGameObject.name + " is: " + endOfGameObject.activeInHierarchy);
                 }
             }
             //characterController.enabled = false;
