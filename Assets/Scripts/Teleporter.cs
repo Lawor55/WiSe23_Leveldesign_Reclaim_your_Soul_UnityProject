@@ -8,6 +8,7 @@ public class Teleporter : MonoBehaviour
     [SerializeField] private bool flipViewDirection;
     //[SerializeField] private bool ignoreModX;
     //[SerializeField] private bool ignoreModZ;
+    private TorchFlicker torchFlicker;
 
     private GameObject player;
     private CharacterController characterController;
@@ -16,6 +17,7 @@ public class Teleporter : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         characterController = player.GetComponent<CharacterController>();
+        torchFlicker = player.GetComponentInChildren<TorchFlicker>();
         //Debug.Log("Teleporter.cs\nName: " + transform.name + "\nPosition: " + transform.position);
     }
 
@@ -24,6 +26,7 @@ public class Teleporter : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Teleport(teleportGoal, transform);
+            torchFlicker.Flicker();
         }
     }
 

@@ -38,20 +38,20 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(Time.deltaTime * move);
     }
 
-    private void Jump()
-    {
-        //groundcheck might need to be extended to allow jumps while walking down stairs
-        if (groundTime > 0 && Input.GetKey(KeyCode.Space))
-        {
-            groundTime = 0;
-            //Debug.Log("Jump!");
-            //formula to calculate the jump acceleration based on gravity and the desired jump height
-            verticalVelocity = Mathf.Sqrt(jumpHeight * -2 * gravity);
-        }
-    }
+    //private void Jump()
+    //{
+    //    //groundcheck might need to be extended to allow jumps while walking down stairs
+    //    if (groundTime > 0 && Input.GetKey(KeyCode.Space))
+    //    {
+    //        groundTime = 0;
+    //        //Debug.Log("Jump!");
+    //        //formula to calculate the jump acceleration based on gravity and the desired jump height
+    //        verticalVelocity = Mathf.Sqrt(jumpHeight * -2 * gravity);
+    //    }
+    //}
     private void Update()
     {
-        Jump();
+        //Jump();
         //sets ground time to 0.2 seconds to extend ground check times while walking down stairs
         if (controller.isGrounded)
         {

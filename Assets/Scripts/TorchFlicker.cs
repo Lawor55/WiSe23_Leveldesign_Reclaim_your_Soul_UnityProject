@@ -15,6 +15,7 @@ public class TorchFlicker : MonoBehaviour
     [SerializeField] private float flickeringIntensityOffset;
 
     private Light playerLight;
+    private bool initiateFlicker = true;
     private float noFlicker;
     private float flickerTimer;
     private float defaultIntensity;
@@ -52,11 +53,34 @@ public class TorchFlicker : MonoBehaviour
             }
             Flicker();
         }
+        //if (initiateFlicker)
+        //{
+        //    initiateFlicker = false;
+        //    StartCoroutine(StartFlicker());
+        //    Debug.Log("Initiate Flicker");
+        //}
     }
 
-    void Flicker()
+    //    private IEnumerator StartFlicker()
+    //    {
+    //        Flicker();
+    //        yield return new WaitForSeconds(Random.Range(defaultTimeTillFlicker, defaultTimeTillFlicker + offsetTimeTillFlicker));
+    //    }
+
+    public void Flicker()
     {
-        float randomIntensity = Random.Range(minFlickeringIntensity , minFlickeringIntensity + flickeringIntensityOffset);
+        //Debug.Log("Flicker");
+
+        //for (flickerTimer = Random.Range(defaultFlickerDuration, offsetFlickerDuration); flickerTimer > 0; flickerTimer -= Time.deltaTime)
+        //{
+        //    Debug.Log("Flickering for " + flickerTimer + " Seconds");
+        //    float randomIntensity = Random.Range(minFlickeringIntensity, minFlickeringIntensity + flickeringIntensityOffset);
+        //    playerLight.intensity = randomIntensity;
+        //}
+        //initiateFlicker = true;
+        //playerLight.intensity = defaultIntensity;
+
+        float randomIntensity = Random.Range(minFlickeringIntensity, minFlickeringIntensity + flickeringIntensityOffset);
         playerLight.intensity = randomIntensity;
     }
 }
