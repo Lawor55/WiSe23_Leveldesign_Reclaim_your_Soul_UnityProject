@@ -1,7 +1,8 @@
 # Reclaim your Soul
 ### **This is a prototype Project for a Leveldesign Exam.**
 
-In this Game the player needs to find a way through a Labyrinth of corridors and rooms in the search for three Keys.
+In this Game the player needs to find a way through a Labyrinth of corridors and rooms in the search for three Keys. <br>
+You can play it in the browser here: [https://lawor55.itch.io/reclaim-your-soul](https://lawor55.itch.io/reclaim-your-soul)
 ![Thumbnail](https://github.com/Lawor55/WiSe23_Leveldesign_Reclaim_your_Soul_UnityProject/assets/111243009/e953aa32-b162-496f-8e31-768e3e2e8dce)
 
 ## Level Explanation
