@@ -121,4 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportGoal: {fileID: 1186196029056180524}
+  endTeleportGoal: {fileID: 0}
   flipViewDirection: 0
+  riddleEntraceTeleporter: {fileID: 0}
+  endOfGameObjects: []
+  isEndOfRiddleTeleporter: 0
